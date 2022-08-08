@@ -1,0 +1,105 @@
+// Calculadora Recursiva
+// Luís Augusto Piske
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Calculadora {
+
+
+    public static void main(String[] args) {
+        String conta;
+        ArrayList<Character> numeros = new ArrayList();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Digite a conta: ");
+        conta = scanner.next();
+
+        if (conta.contains("+")) {
+            for (int i = conta.indexOf("+") - 1; i > conta.indexOf("("); i--) {
+                numeros.add(conta.charAt(i));
+            }
+            System.out.println("Soma: " +Adicao(numeros));
+
+        }
+
+
+        if (conta.contains("-")) {
+            for (int i = conta.indexOf("-") - 1; i > conta.indexOf("("); i--) {
+                numeros.add(conta.charAt(i));
+            }
+            System.out.println("Subtracao: " +Subtracao(numeros));
+        }
+
+
+        if (conta.contains("*")) {
+            for (int i = conta.indexOf("*") - 1; i > conta.indexOf("("); i--) {
+                numeros.add(conta.charAt(i));
+            }
+            System.out.println("Multiplicacao: " +Multiplicacao(numeros));
+        }
+
+
+        if (conta.contains("/")) {
+            for (int i = conta.indexOf("/") - 1; i > conta.indexOf("("); i--) {
+                numeros.add(conta.charAt(i));
+            }
+            System.out.println("Divisao: " +Divisao(numeros));
+        }
+
+    }
+
+
+    private static double Adicao(ArrayList<Character> numeros) {
+        double resultado = 0;
+
+        for (int i = 0; i < numeros.size(); i++) {
+            resultado += numeros.get(i).charValue() - 48;
+        }
+        return resultado;
+    }
+
+    private static double Subtracao(ArrayList<Character> numeros) {
+        double resultado = 0;
+
+        for (int i = 0; i < numeros.size(); i++) {
+            if (i == numeros.size() - 1) {
+                resultado += numeros.get(i).charValue() - 48;
+            } else {
+                resultado -= numeros.get(i).charValue() - 48;
+            }
+        }
+        return resultado;
+    }
+
+    private static double Multiplicacao(ArrayList<Character> numeros) {
+        double resultado = 0;
+
+
+        for (int i = 0; i < numeros.size(); i++) {
+            if (i == 0) {
+                resultado = numeros.get(i).charValue() - 48;
+            } else {
+                resultado *= numeros.get(i).charValue() - 48;
+            }
+        }
+        return resultado;
+    }
+
+    private static double Divisao(ArrayList<Character> numeros) {
+        double resultado = 0;
+
+        for (int i = numeros.size()-1; i >= 0; i--) {
+            if (i == numeros.size()-1) {
+                resultado = numeros.get(i).charValue() - 48;
+            } else {
+                resultado /= numeros.get(i).charValue() - 48;
+            }
+
+
+        }
+        return resultado;
+    }
+}
+
+
